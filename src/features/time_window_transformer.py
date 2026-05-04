@@ -5,7 +5,7 @@ from __future__ import annotations
 from datetime import date
 
 import pyspark.sql.functions as F
-from pyspark.sql import DataFrame, Window
+from pyspark.sql import DataFrame
 
 from src.config.models import TimeWindowFeature
 from src.features.base_transformer import BaseTransformer

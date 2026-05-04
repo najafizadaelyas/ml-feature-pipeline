@@ -4,7 +4,7 @@ from __future__ import annotations
 
 import json
 import logging
-from datetime import date, datetime, timezone
+from datetime import UTC, date, datetime
 
 import boto3
 
@@ -37,7 +37,7 @@ def _build_registry_entry(
         "output_path": output_path,
         "feature_count": len(feature_columns),
         "features": all_features,
-        "updated_at": datetime.now(tz=timezone.utc).isoformat(),
+        "updated_at": datetime.now(tz=UTC).isoformat(),
     }
 
 

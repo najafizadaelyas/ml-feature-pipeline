@@ -1,6 +1,5 @@
 """DAG integrity tests — verify structure without triggering Spark or S3 calls."""
 
-import importlib
 import os
 import sys
 

@@ -44,7 +44,7 @@ class PipelineConfig(BaseModel):
     run_date: str | None = None  # injected at runtime by Airflow
 
     @model_validator(mode="after")
-    def _check_entity_key_in_date_column(self) -> "PipelineConfig":
+    def _check_entity_key_in_date_column(self) -> PipelineConfig:
         if self.entity_key == self.date_column:
             raise ValueError("entity_key and date_column must be different columns")
         return self
