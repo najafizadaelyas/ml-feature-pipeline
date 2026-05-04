@@ -1,0 +1,46 @@
+entity_type: customer
+
+null_handlers:
+  - column: transaction_amount
+    strategy: median_impute
+    add_indicator: true
+  - column: payment_method
+    strategy: fill
+    fill_value: "unknown"
+
+aggregations:
+  - name: total_spend_30d
+    source_column: transaction_amount
+    function: sum
+    window_days: 30
+  - name: total_spend_90d
+    source_column: transaction_amount
+    function: sum
+    window_days: 90
+  - name: avg_transaction_amount_30d
+    source_column: transaction_amount
+    function: mean
+    window_days: 30
+  - name: transaction_count_30d
+    source_column: transaction_id
+    function: count
+    window_days: 30
+  - name: max_single_transaction_90d
+    source_column: transaction_amount
+    function: max
+    window_days: 90
+
+encodings:
+  - name: payment_method_freq_encoded
+    source_column: payment_method
+    method: frequency
+
+time_windows:
+  - name: spend_trend_slope_30d
+    source_column: transaction_amount
+    feature_type: rolling_slope
+    window_days: 30
+  - name: rolling_mean_spend_7d
+    source_column: transaction_amount
+    feature_type: rolling_mean
+    window_days: 7

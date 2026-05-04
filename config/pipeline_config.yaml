@@ -1,0 +1,30 @@
+pipeline_name: customer_feature_pipeline
+entity_type: customer
+entity_key: customer_id
+date_column: event_date
+input_format: parquet
+
+feature_definition_files:
+  - feature_definitions/customer_features.yaml
+  - feature_definitions/transaction_features.yaml
+
+s3:
+  raw_bucket: raw-data
+  raw_prefix: events/
+  feature_store_bucket: feature-store
+  feature_store_prefix: features/
+  registry_bucket: feature-store
+  registry_key: feature_registry.json
+  # endpoint_url: http://localhost:4566  # Uncomment for LocalStack
+
+spark:
+  app_name: ml-feature-pipeline
+  master: "local[*]"
+  executor_memory: "2g"
+  driver_memory: "2g"
+  shuffle_partitions: 50
+  extra_conf: {}
+
+validation:
+  max_null_rate: 0.05
+  min_row_count: 100

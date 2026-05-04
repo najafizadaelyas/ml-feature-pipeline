@@ -1,0 +1,37 @@
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+.eggs/
+dist/
+build/
+*.egg
+
+# Virtual environments
+.venv/
+venv/
+env/
+
+# Pytest / coverage
+.pytest_cache/
+.coverage
+coverage.xml
+htmlcov/
+
+# Airflow
+.airflow/
+airflow_test.db
+logs/
+airflow.db
+
+# IDE
+.idea/
+.vscode/
+
+# Environment
+.env
+
+# Spark
+derby.log
+metastore_db/
+spark-warehouse/
